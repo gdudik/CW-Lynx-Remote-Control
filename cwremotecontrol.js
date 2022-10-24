@@ -34,7 +34,7 @@ let localLynxServer = net.createServer((socket) => {
       resultsActive = true;
       timeActive = false;
 
-  axios.post('http://192.168.1.44:5201', play_results)
+  /* axios.post('http://192.168.1.44:5201', play_results)
     .then((res) => {
       console.log(`Status: ${res.status}`);
       console.log(res.data);
@@ -44,7 +44,7 @@ let localLynxServer = net.createServer((socket) => {
       
       resultsActive = true;
       timeActive = false;
-    }
+    } */
     
     
     if (lynxData.indexOf('Command=LayoutDraw;Name=Time;Clear=1;') !== -1) {
