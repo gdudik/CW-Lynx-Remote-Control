@@ -43,8 +43,8 @@ let localLynxServer = net.createServer((socket) => {
     });
       
       resultsActive = true;
-      timeActive = false;
-    } */
+      timeActive = false;*/
+    } 
     
     
     if (lynxData.indexOf('Command=LayoutDraw;Name=Time;Clear=1;') !== -1) {
