@@ -25,7 +25,7 @@ let localLynxServer = net.createServer((socket) => {
         console.error(err);
       }
       // 1 s delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 250));
 
       try {
         const res = axios.post('http://192.168.1.44:5201', play_results);
