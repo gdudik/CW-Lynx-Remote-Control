@@ -8,15 +8,15 @@ let localLynxServer = net.createServer((socket) => {
     if (lynxData.indexOf('Command=LayoutDraw;Name=Results;Window=2;Clear=1;') !== -1 && resultsActive === false) {
       const axios = require('axios');
       const eval_expressions =
-        {
-          "action": "activate_grid_cell",
-          "grid": "grid",
-          "cell": [0,0],
-        } ;
-      const play_results =  {
+      {
+        "action": "activate_grid_cell",
+        "grid": "grid",
+        "cell": [0, 0],
+      };
+      const play_results = {
         "action": "play_motions",
         "motions": "TimeResults Competitor Data",
-      } ;
+      };
       try {
         const res = axios.post('http://192.168.1.44:5201', eval_expressions);
         console.log(`Status: ${res.status}`);
@@ -49,8 +49,8 @@ let localLynxServer = net.createServer((socket) => {
           console.log(`Status: ${res.status}`);
           console.log(res.data);
         }).catch((err) => {
-        console.error(err);
-      });
+          console.error(err);
+        });
       timeActive = true;
       resultsActive = false;
     }
