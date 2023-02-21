@@ -29,7 +29,7 @@ let localLynxServer = net.createServer((socket) => {
       {
         "action": "activate_grid_cell",
         "grid": "grid",
-        "cell": [7, 0],
+        "cell": [0, 0],
       };
       const play_results = {
         "action": "play_motions",
