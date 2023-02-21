@@ -48,23 +48,6 @@ let localLynxServer = net.createServer((socket) => {
           console.error(err);
         });
 
-
-      axios.post('http://192.168.1.50:49345/api/0/clear/layer/Clock-corners')
-        .then((res) => {
-          console.log(`Status: ${res.status}`);
-          console.log(res.data);
-        }).catch((err) => {
-          console.error(err);
-        });
-        
-        axios.post('http://192.168.1.50:49345/api/0/clear/layer/Clock-60s')
-        .then((res) => {
-          console.log(`Status: ${res.status}`);
-          console.log(res.data);
-        }).catch((err) => {
-          console.error(err);
-        });
-
       try {
         const res = axios.post('http://192.168.1.44:5201', eval_expressions);
         console.log(`Status: ${res.status}`);
@@ -101,24 +84,7 @@ let localLynxServer = net.createServer((socket) => {
         }).catch((err) => {
           console.error(err);
         });
-      
-      axios.post('http://192.168.1.50:49345/api/0/trigger/layer/Clock-corners/playlist/Floor Boards/cue/Input 15')
-        .then((res) => {
-          console.log(`Status: ${res.status}`);
-          console.log(res.data);
-        }).catch((err) => {
-          console.error(err);
-        });
-        axios.post('http://192.168.1.50:49345/api/0/trigger/layer/Clock-60s/playlist/Floor Boards/cue/Input 15')
-        .then((res) => {
-          console.log(`Status: ${res.status}`);
-          console.log(res.data);
-        }).catch((err) => {
-          console.error(err);
-        });  
-      timeActive = true;
-      resultsActive = false;
-    }
+
     // check the lynxData variable for either of two strings you want by using indexOf
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
     // if either string exists, then make the appropriate post call
