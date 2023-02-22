@@ -7,7 +7,7 @@ let localLynxServer = net.createServer((socket) => {
     console.log(lynxData)
 //If starts signal sent from lynx, trigger the dak to the starts list button    
     
-    if (lynxData.indexOf('Command=LayoutDraw;Name=Starts;Window=2;Clear=1;') !== -1 && resultsActive === false) {
+    if (lynxData.indexOf('Command=LayoutDraw;Name=Starts;Window=1;Clear=1;') !== -1 && resultsActive === false) {
       const axios = require('axios');
       const dak_starts = {
         "action": "activate_grid_cell",
