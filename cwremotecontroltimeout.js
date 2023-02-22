@@ -40,13 +40,13 @@ let localLynxServer = net.createServer((socket) => {
         "grid": "grid",
         "cell": [6, 0],
       };
-      /*axios.post('http://192.168.1.44:5201', dak_results)
+      axios.post('http://192.168.1.44:5201', dak_results)
         .then((res) => {
           console.log(`Status: ${res.status}`);
           console.log(res.data);
         }).catch((err) => {
           console.error(err);
-        });*/
+        });
 
       try {
         const res = axios.post('http://192.168.1.44:5201', eval_expressions);
