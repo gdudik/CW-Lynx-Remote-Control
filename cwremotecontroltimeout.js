@@ -68,7 +68,7 @@ let localLynxServer = net.createServer((socket) => {
       resultsActive = true;
       timeActive = false;
     }
-// If time signal received from lynx, play the running time motion in CW and then trigger the clock back in on both PVP layouts.
+// If time signal received from lynx, play the running time motion in CW.
 
     if (lynxData.indexOf('Command=LayoutDraw;Name=Time;Clear=1;') !== -1) {
       const axios = require('axios');
