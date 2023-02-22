@@ -84,6 +84,7 @@ let localLynxServer = net.createServer((socket) => {
         }).catch((err) => {
           console.error(err);
         });
+        resultsActive = false;
       }
     // check the lynxData variable for either of two strings you want by using indexOf
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
