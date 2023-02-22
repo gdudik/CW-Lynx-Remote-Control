@@ -7,7 +7,7 @@ let localLynxServer = net.createServer((socket) => {
     console.log(lynxData)
 //If starts signal sent from lynx, trigger the dak to the starts list button    
     
-    if (lynxData.indexOf('Command=LayoutDraw;Name=Starts;Window=1;Clear=1;') !== -1 && resultsActive === false) {
+    if (lynxData.indexOf('Command=LayoutDraw;Name=Starts;Window=1;Clear=1;') !== -1 /*&& resultsActive === false*/) {
       const axios = require('axios');
       const dak_starts = {
         "action": "activate_grid_cell",
@@ -22,7 +22,7 @@ let localLynxServer = net.createServer((socket) => {
           console.error(err);
         });
     }
-// If results signal sent from lynx, evaluate the expressions by triggering the grid button, wait 1s, play the motion on the floor boards. Also clear the clock from PVP and open the results layout on the dak.
+// If results signal sent from lynx, evaluate the expressions by triggering the grid button, wait 1s, play the motion on the floor boards.
     if (lynxData.indexOf('Command=LayoutDraw;Name=Results;Window=2;Clear=1;') !== -1 && resultsActive === false) {
       const axios = require('axios');
       const eval_expressions =
