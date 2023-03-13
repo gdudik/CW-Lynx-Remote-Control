@@ -7,21 +7,21 @@ let localLynxServer = net.createServer((socket) => {
     console.log(lynxData)
 //If starts signal sent from lynx, trigger the dak to the starts list button    
     
-    if (lynxData.indexOf('Command=LayoutDraw;Name=Starts;Window=1;Clear=1;') !== -1 /*&& resultsActive === false*/) {
-      const axios = require('axios');
-      const dak_starts = {
-        "action": "activate_grid_cell",
-        "grid": "grid",
-        "cell": [6, 1],
-      };
-      axios.post('http://192.168.1.44:5201', dak_starts)
-        .then((res) => {
-          console.log(`Status: ${res.status}`);
-          console.log(res.data);
-        }).catch((err) => {
-          console.error(err);
-        });
-    }
+    // if (lynxData.indexOf('Command=LayoutDraw;Name=Starts;Window=1;Clear=1;') !== -1 /*&& resultsActive === false*/) {
+    //   const axios = require('axios');
+    //   const dak_starts = {
+    //     "action": "activate_grid_cell",
+    //     "grid": "grid",
+    //     "cell": [6, 1],
+    //   };
+    //   axios.post('http://192.168.1.44:5201', dak_starts)
+    //     .then((res) => {
+    //       console.log(`Status: ${res.status}`);
+    //       console.log(res.data);
+    //     }).catch((err) => {
+    //       console.error(err);
+    //     });
+    // }
 // If results signal sent from lynx, evaluate the expressions by triggering the grid button, wait 1s, play the motion on the floor boards.
     if (lynxData.indexOf('Command=LayoutDraw;Name=Results;Window=2;Clear=1;') !== -1 && resultsActive === false) {
       const axios = require('axios');
@@ -35,18 +35,18 @@ let localLynxServer = net.createServer((socket) => {
         "action": "play_motions",
         "motions": "TimeResults Competitor Data",
       };
-      const dak_results = {
-        "action": "activate_grid_cell",
-        "grid": "grid",
-        "cell": [6, 0],
-      };
-      axios.post('http://192.168.1.44:5201', dak_results)
-        .then((res) => {
-          console.log(`Status: ${res.status}`);
-          console.log(res.data);
-        }).catch((err) => {
-          console.error(err);
-        });
+      // const dak_results = {
+      //   "action": "activate_grid_cell",
+      //   "grid": "grid",
+      //   "cell": [6, 0],
+      // };
+      // axios.post('http://192.168.1.44:5201', dak_results)
+      //   .then((res) => {
+      //     console.log(`Status: ${res.status}`);
+      //     console.log(res.data);
+      //   }).catch((err) => {
+      //     console.error(err);
+      //   });
 
       try {
         const res = axios.post('http://192.168.1.44:5201', eval_expressions);
