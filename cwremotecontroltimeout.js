@@ -23,7 +23,7 @@ let localLynxServer = net.createServer((socket) => {
     //     });
     // }
 // If results signal sent from lynx, evaluate the expressions by triggering the grid button, wait 1s, play the motion on the floor boards.
-    if (lynxData.indexOf('Command=LayoutDraw;Name=Results;Window=2;Clear=1;') !== -1 && resultsActive === false) {
+    if (lynxData.indexOf('Command=LayoutDraw;Name=Results;Window=2;Clear=1;') !== -1 ) {
       const axios = require('axios');
       const eval_expressions =
       {
@@ -35,6 +35,10 @@ let localLynxServer = net.createServer((socket) => {
         "action": "play_motions",
         "motions": "TimeResults Competitor Data",
       };
+      const kill_lap_count = {
+        "action": "stop_motions",
+        "motions": "TimeResults Laps Remaining Text Manual"
+      }
       // const dak_results = {
       //   "action": "activate_grid_cell",
       //   "grid": "grid",
@@ -49,43 +53,52 @@ let localLynxServer = net.createServer((socket) => {
       //   });
 
       try {
-        const res = axios.post('http://192.168.1.44:5201', eval_expressions);
+        const res = axios.post('http://192.168.1.44:5201', kill_lap_count);
         console.log(`Status: ${res.status}`);
         console.log(res.data);
       } catch (err) {
         console.error(err);
       }
       // 1 s delay
-      await new Promise(resolve => setTimeout(resolve, 250));
+    //   await new Promise(resolve => setTimeout(resolve, 250));
+    //   try {
+    //     const res = axios.post('http://192.168.1.44:5201', eval_expressions);
+    //     console.log(`Status: ${res.status}`);
+    //     console.log(res.data);
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    //   // 1 s delay
+    //   await new Promise(resolve => setTimeout(resolve, 250));
 
-      try {
-        const res = axios.post('http://192.168.1.44:5201', play_results);
-        console.log(`Status: ${res.status}`);
-        console.log(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-      resultsActive = true;
-      timeActive = false;
+    //   try {
+    //     const res = axios.post('http://192.168.1.44:5201', play_results);
+    //     console.log(`Status: ${res.status}`);
+    //     console.log(res.data);
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    //   resultsActive = true;
+    //   timeActive = false;
     }
 // If time signal received from lynx, play the running time motion in CW.
 
-    if (lynxData.indexOf('Command=LayoutDraw;Name=Time;Clear=1;') !== -1) {
-      const axios = require('axios');
-      const data = {
-        "action": "play_motions",
-        "motions": "TimeResults Running Time",
-      };
+    // if (lynxData.indexOf('Command=LayoutDraw;Name=Time;Clear=1;') !== -1) {
+    //   const axios = require('axios');
+    //   const data = {
+    //     "action": "play_motions",
+    //     "motions": "TimeResults Running Time",
+    //   };
       
-      axios.post('http://192.168.1.44:5201', data)
-        .then((res) => {
-          console.log(`Status: ${res.status}`);
-          console.log(res.data);
-        }).catch((err) => {
-          console.error(err);
-        });
-        resultsActive = false;
-      }
+    //   axios.post('http://192.168.1.44:5201', data)
+    //     .then((res) => {
+    //       console.log(`Status: ${res.status}`);
+    //       console.log(res.data);
+    //     }).catch((err) => {
+    //       console.error(err);
+    //     });
+    //     resultsActive = false;
+    //   }
     // check the lynxData variable for either of two strings you want by using indexOf
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
     // if either string exists, then make the appropriate post call
